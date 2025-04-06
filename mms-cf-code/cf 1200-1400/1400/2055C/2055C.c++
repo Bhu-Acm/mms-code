@@ -92,15 +92,60 @@ void solve() {
       mp[{a,b}]++;
     }
   }
+  while(1){
+    int f=0;
+    for(int i=1;i<=n;i++){
+      int flag=0;int a,b;ll sum=0;
+      for(int j=1;j<=m;j++){
+        sum+=x[i][j];
+        if(x[i][j]==0&&mp[{i,j}]!=0){
+          a=i;b=j;
+          flag++;
+        }
+        if(flag>1){
+          break;
+        }
+      }
+      if(flag==1){
+        f++;
+        x[a][b]=-sum;
+        mp[{a,b}]=0;
+      }
+    }
+    for(int j=1;j<=m;j++){
+      int flag=0;int a,b;ll sum=0;
+      for(itn i=1;i<=n;i++){
+        sum+=x[i][j];
+        if(x[i][j]==0&&mp[{i,j}]!=0){
+          flag++;
+          a=i;b=j;
+        }
+        if(flag>1){
+          break;
+        }
+      }
+      if(flag==1){
+        f++;
+        x[a][b]=-sum;
+        mp[{a,b}]=0;
+      }
+    }
+    if(f==0)break;
+  }
+  for(int i=1;i<=n;i++){
+    for(int j=1;j<=m;j++){
+      cout<<x[i][j] endd;
+    }cout endl;
+  }cout endl;
 //大概思路是 全变成0 数独
 }
 int main() {
     std::ios::sync_with_stdio(false);
-    // cin.tie(0);cout.tie(0);
+     cin.tie(0);cout.tie(0);
     int T = 1;
     init();
     // scanf("%d", &T);
-     // cin >> T;
+      cin >> T;
     while (T--) {
         solve();
     }
