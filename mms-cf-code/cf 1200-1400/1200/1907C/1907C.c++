@@ -72,15 +72,30 @@ ll treehe(int a,int b){
   return ans;
 }
 void solve() {   
-  
+  int n;cin>>n;
+  string s;cin>>s;
+  map<char,ll>mp;
+  ll maxx=-1;
+  for(int i=0;i<s.size();i++){
+    mp[s[i]]++;
+    maxx=max(maxx,mp[s[i]]);
+  }
+  if(maxx*2-n<=0){
+    if(n%2==0){
+        cout<<0 endl;
+    }else{
+        cout<<1 endl;
+    }
+  }else
+  cout<<maxx*2-n endl;
 }
 int main() {
     std::ios::sync_with_stdio(false);
-    // cin.tie(0);cout.tie(0);
+     cin.tie(0);cout.tie(0);
     int T = 1;
     init();
     // scanf("%d", &T);
-    // cin >> T;
+     cin >> T;
     while (T--) {
         solve();
     }

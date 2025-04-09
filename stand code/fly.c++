@@ -21,11 +21,12 @@
 #define en end()
 #define endl <<"\n"
 #define double long double
+const ll mod=998244353;
 #define endd <<" "
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
 //ll x[500010] = { 0 };
-ll sumy = 0;ll x[1000010]={0};
+ll sumy = 0;ll a[1000010]={0};
 int Rank[1000010]={0};int pre[1000010]={0};
 inline ll gcd(ll a, ll b) { return b > 0 ? gcd(b, a % b) : a; }// from kdb
 inline ll lcm(ll a, ll b) { return (a * b) / gcd(a, b); }
@@ -71,8 +72,32 @@ ll treehe(int a,int b){
   }
   return ans;
 }
+ll ksm(ll a,ll b){
+    ll ans=1;
+    while(b){
+        if(b&1){
+            ans=ans*a%mod;
+        }
+        a=a*a%mod;
+        b>>=1 ;
+    }
+    return ans;
+}
 void solve() {   
-  
+//   int n,x,m,k;cin>>n>>x>>m>>k;sumy=0;
+//     for(int i=1;i<=n;i++){
+//         cin>>a[i];
+//         ll sum=0;ll t=a[i];
+//         for(int j=1;j<=k;j++){
+//             t=t+(t&m)+x;
+//             sum+=t;
+//         }
+//         sumy+=sum;
+//     }
+//     cout<<sumy endl;
+//     cout<<sumy*(n,mod-2)%mod;
+int t=3 &6;
+cout<<t;
 }
 int main() {
     std::ios::sync_with_stdio(false);
@@ -80,7 +105,7 @@ int main() {
     int T = 1;
     init();
     // scanf("%d", &T);
-    // cin >> T;
+     // cin >> T;
     while (T--) {
         solve();
     }

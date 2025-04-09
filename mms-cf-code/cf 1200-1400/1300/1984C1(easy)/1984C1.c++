@@ -72,15 +72,24 @@ ll treehe(int a,int b){
   return ans;
 }
 void solve() {   
-  
+    // 只选择一次操作二 使得操作二的利益最大化
+  int n;cin>>n;sumy=0;ll minn=99999999999;
+  for(int i=1;i<=n;i++){
+    cin>>x[i];sumy+=x[i];
+    minn=min(sumy,minn);
+  }
+  if(minn>=0){
+    cout<<sumy endl;return ;
+  }
+  cout<<sumy-minn*2 endl;
 }
 int main() {
     std::ios::sync_with_stdio(false);
-    // cin.tie(0);cout.tie(0);
+    cin.tie(0);cout.tie(0);
     int T = 1;
     init();
     // scanf("%d", &T);
-    // cin >> T;
+     cin >> T;
     while (T--) {
         solve();
     }
