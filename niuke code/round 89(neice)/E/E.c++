@@ -29,42 +29,11 @@ ll sumy = 0;//l x[1000010]={0};
 int Rank[1000010]={0};int pre[1000010]={0};
 inline ll gcd(ll a, ll b) { return b > 0 ? gcd(b, a % b) : a; }// from kdb
 inline ll lcm(ll a, ll b) { return (a * b) / gcd(a, b); }
-// inline int jihefind(int root){if(pre[root]==root){return root;}pre[root]=jihefind(pre[root]);return pre[root];}
-// inline int jihejoin(int x,int y){ x=jihefind(x); y=jihefind(y);if(x==y){return 0;}if(Rank[x]>Rank[y]){pre[y]=x;}else{if(Rank[x]==Rank[y]){Rank[y]++;}pre[x]=y;}return 1;}
-// inline bool issame(itn x,int y){return jihefind(x)==jihefind(y);}
+inline int jihefind(int root){if(pre[root]==root){return root;}pre[root]=jihefind(pre[root]);return pre[root];}
+inline int jihejoin(int x,int y){ x=jihefind(x); y=jihefind(y);if(x==y){return 0;}if(Rank[x]>Rank[y]){pre[y]=x;}else{if(Rank[x]==Rank[y]){Rank[y]++;}pre[x]=y;}return 1;}
+inline bool issame(itn x,int y){return jihefind(x)==jihefind(y);}
 // priority_queue<int> q;//优先队列 大
 //priority_queue<int,vector<int>,greater<int> > q;//优先队列 小
-int jihefind(itn x){
-    if(pre[x]==x){
-        return x;
-    }
-    pre[x]=jihefind(pre[x]);
-    return pre[x];
-}
-int jihejion(int x,int y){
-    x=jihefind(x);
-    y=jihefind(y);
-    if(x==y){
-        return 0;
-    }
-    if(Rank[x]>Rank[y]){
-        pre[y]=x;
-    }else{
-        if(Rank[x]==Rank[y]){
-            pre[y]=x;
-            Rank[x]++;return 1;
-        }
-        pre[x]=y;
-    }
-    return 1;
-}
-int issame(int x,int y){
-    if(jihefind(x)==jihefind(y)){
-        return 1;
-    }else{
-        return 0;
-    }
-}
 int dx[8]={-1,1,0,0,-1,-1,1,1};
 int dy[8]={0,0,-1,1,-1,1,-1,1};//上下左右，左上右上左下右上
 //建图
@@ -105,7 +74,54 @@ ll treehe(int a,int b){
 vector<ll>v;int n,m;
 int pos[200][200]={0};
 void solve() {   
-  
+  cin>>n>>m;
+    map<char,ll>mp;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=m;j++){
+            cin>>x[i][j];
+            mp[x[i][j]]++;
+        }
+    }
+   if(mp['0']%2!=0){
+       cout<<-1 endl;return ;
+   }
+    for(int i=1;i<=n;i++){
+        for(itn j=1;j<m;j++){
+            if(x[i][j]=='0'){
+                v.push_back(i);
+                v.push_back(j);
+                v.push_back(i);
+                v.push_back(j+1);
+                x[i][j]='1';
+                if(x[i][j+1]=='0'){
+                    x[i][j+1]='1';
+                }else{
+                    x[i][j+1]='0';
+                }
+            }
+        }
+    }
+    for(itn i=1;i<n;i++){
+        if(x[i][m]=='0'){
+            v.push_back(i);
+            v.push_back(m);
+            v.push_back(i+1);
+            v.push_back(m);
+            x[i][m]='1';
+            if(x[i+1][m]=='0'){
+                x[i+1][m]='1';
+            }else{
+                x[i+1][m]='0';
+            }
+        }
+    }
+    cout<<v.size()/4 endl;int flag=0;
+    for(int i=0;i<v.size();i++){
+        cout<<v[i] endd;flag++;
+        if(flag==4){
+            flag=0;cout endl;
+        }
+    }
 }
 int main() {
     std::ios::sync_with_stdio(false);

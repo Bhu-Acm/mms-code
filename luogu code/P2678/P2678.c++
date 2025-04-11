@@ -25,46 +25,15 @@
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
 //ll x[500010] = { 0 };
-ll sumy = 0;//l x[1000010]={0};
+ll sumy = 0;ll x[1000010]={0};
 int Rank[1000010]={0};int pre[1000010]={0};
 inline ll gcd(ll a, ll b) { return b > 0 ? gcd(b, a % b) : a; }// from kdb
 inline ll lcm(ll a, ll b) { return (a * b) / gcd(a, b); }
-// inline int jihefind(int root){if(pre[root]==root){return root;}pre[root]=jihefind(pre[root]);return pre[root];}
-// inline int jihejoin(int x,int y){ x=jihefind(x); y=jihefind(y);if(x==y){return 0;}if(Rank[x]>Rank[y]){pre[y]=x;}else{if(Rank[x]==Rank[y]){Rank[y]++;}pre[x]=y;}return 1;}
-// inline bool issame(itn x,int y){return jihefind(x)==jihefind(y);}
+inline int jihefind(int root){if(pre[root]==root){return root;}pre[root]=jihefind(pre[root]);return pre[root];}
+inline int jihejoin(int x,int y){ x=jihefind(x); y=jihefind(y);if(x==y){return 0;}if(Rank[x]>Rank[y]){pre[y]=x;}else{if(Rank[x]==Rank[y]){Rank[y]++;}pre[x]=y;}return 1;}
+inline bool issame(itn x,int y){return jihefind(x)==jihefind(y);}
 // priority_queue<int> q;//优先队列 大
 //priority_queue<int,vector<int>,greater<int> > q;//优先队列 小
-int jihefind(itn x){
-    if(pre[x]==x){
-        return x;
-    }
-    pre[x]=jihefind(pre[x]);
-    return pre[x];
-}
-int jihejion(int x,int y){
-    x=jihefind(x);
-    y=jihefind(y);
-    if(x==y){
-        return 0;
-    }
-    if(Rank[x]>Rank[y]){
-        pre[y]=x;
-    }else{
-        if(Rank[x]==Rank[y]){
-            pre[y]=x;
-            Rank[x]++;return 1;
-        }
-        pre[x]=y;
-    }
-    return 1;
-}
-int issame(int x,int y){
-    if(jihefind(x)==jihefind(y)){
-        return 1;
-    }else{
-        return 0;
-    }
-}
 int dx[8]={-1,1,0,0,-1,-1,1,1};
 int dy[8]={0,0,-1,1,-1,1,-1,1};//上下左右，左上右上左下右上
 //建图
@@ -101,11 +70,38 @@ ll treehe(int a,int b){
     ans+=treesum[i];
   }
   return ans;
-}char x[200][200];
-vector<ll>v;int n,m;
-int pos[200][200]={0};
+}int n,m,l;
+int pd(ll w){
+    int pos=0;int sum=0;
+    for(int i=1;i<=n+1;i++){
+        if(x[i]-pos<w){
+            sum++;
+            if(sum>m){
+                return 0;
+            }
+        }else{
+            pos=x[i];
+        }
+    }
+
+    return 1;
+}
 void solve() {   
-  
+  cin>>l>>n>>m;
+  for(int i=1;i<=n;i++){
+    cin>>x[i];
+  }
+  x[n+1]=l;
+  ll a=0,b=l+10;
+  while(a<b){
+    ll w=(a+b)>>1;
+    if(pd(w)){
+        a=w+1;
+    }else{
+        b=w;
+    }
+  }
+  cout<<a-1 endl;
 }
 int main() {
     std::ios::sync_with_stdio(false);
