@@ -73,20 +73,12 @@ ll treehe(int a,int b){
   return ans;
 }itn n,l,k;
 void solve() {   
-  int n;cin>>n;
-  for(int i=1;i<=n;i++){
-    cin>>x[i];
-    sum[i]=sum[i-1]+x[i];
+  int t=1;
+  for(int i=2;i<=100;i++){
+    t|=i;
+    cout<<t endl;
   }
-  ll maxx=0;
-  for(int i=n;i>=2;i--){
-    for(int j=1;j<=i-1;j++){
-      if((sum[i]-sum[i-1])%7==0){
-        maxx=max(maxx,(ll)i-j);
-      }
-    }
-  }
-  cout<<maxx;
+ // cout<<t endl;
 }
 int main() {
     std::ios::sync_with_stdio(false);
