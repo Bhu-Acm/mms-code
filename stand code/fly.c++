@@ -26,12 +26,11 @@ using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
 //ll x[500010] = { 0 };
 ll sumy = 0;ll x[1000010]={0};
-ll sum[1000010]={0};
 int Rank[1000010]={0};int pre[1000010]={0};
 inline ll gcd(ll a, ll b) { return b > 0 ? gcd(b, a % b) : a; }// from kdb
 inline ll lcm(ll a, ll b) { return (a * b) / gcd(a, b); }
 inline int jihefind(int root){if(pre[root]==root){return root;}pre[root]=jihefind(pre[root]);return pre[root];}
-inline int jihejoin(int x,int y){ x=jihefind(x); y=jihefind(y);if(x==y){return 0;}if(Rank[x]>Rank[y]){pre[y]=x;}else{if(Rank[x]==Rank[y]){Rank[y]++;}pre[x]=y;}return 1;}
+inline int jihejoin(int x,int y){ x=jihefind(x); y=jihefind(y);if(x==y){return 0;}if(x>y) pre[y]=x;else pre[x]=y;return 1;}
 inline bool issame(itn x,int y){return jihefind(x)==jihefind(y);}
 // priority_queue<int> q;//优先队列 大
 //priority_queue<int,vector<int>,greater<int> > q;//优先队列 小
@@ -71,14 +70,30 @@ ll treehe(int a,int b){
     ans+=treesum[i];
   }
   return ans;
-}itn n,l,k;
+}
 void solve() {   
-  int t=1;
-  for(int i=2;i<=100;i++){
-    t|=i;
-    cout<<t endl;
+  int n,m;cin>>n>>m;map<ll,ll>mp,mp1,mp2;
+  for(int i=1;i<=n;i++){
+    pre[i]=i;
   }
- // cout<<t endl;
+  for(int i=1;i<=m;i++){
+    int a,b;cin>>a>>b;
+    mp1[a]++;mp1[b]++;
+    jihejoin(a,b);
+  }
+  for(int i=1;i<=n;i++){
+    mp[jihefind(i)]++;
+    if(mp1[i]!=2){
+      mp2[jihefind(i)]=0;
+    }
+   // cout<<jihefind(i) endd;
+  }
+  for(auto it:mp){
+    if(it.se>=3&&mp2.count(it.fi)==0) sumy++;
+   // cout<<it.fi endd;
+  }//cout endl;
+  cout<<sumy endl;
+  
 }
 int main() {
     std::ios::sync_with_stdio(false);
