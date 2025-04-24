@@ -1,99 +1,66 @@
 //fly!
 #include<bits/stdc++.h>
-#include<algorithm>
-#include<string>
-#include<map>
-#include<stack>
-#include<queue>
-#include<deque>
-#include<numeric>
-#define ll long  long
-#define ull unsigned long long
-#define itn int 
-#define mian main
-#define N 1000010
-#define yes true
-#define no false
-#define fi first
-#define all(x) x.begin(),x.end()
-#define se second
-#define be begin()
-#define en end()
-#define endl <<"\n"
-#define double long double
-#define endd <<" "
 using namespace std;
-//atuo lfy 琴弦断了，缘也尽了，你也走了
-//ll x[500010] = { 0 };
-ll sumy = 0;ll x[1000010]={0};
-int Rank[1000010]={0};int pre[1000010]={0};
-inline ll gcd(ll a, ll b) { return b > 0 ? gcd(b, a % b) : a; }// from kdb
-inline ll lcm(ll a, ll b) { return (a * b) / gcd(a, b); }
-inline int jihefind(int root){if(pre[root]==root){return root;}pre[root]=jihefind(pre[root]);return pre[root];}
-inline int jihejoin(int x,int y){ x=jihefind(x); y=jihefind(y);if(x==y){return 0;}if(x>y) pre[y]=x;else pre[x]=y;return 1;}
-inline bool issame(itn x,int y){return jihefind(x)==jihefind(y);}
-// priority_queue<int> q;//优先队列 大
-//priority_queue<int,vector<int>,greater<int> > q;//优先队列 小
-int dx[8]={-1,1,0,0,-1,-1,1,1};
-int dy[8]={0,0,-1,1,-1,1,-1,1};//上下左右，左上右上左下右上
-//建图
+int sumy = 0;int x[10000]={0};
 struct Tu{
-   ll v;//终点
-   ll nxt;//下一条边
-   ll w;//权值
-}tu[1000000];
-ll head[1000000];ll rd[1000000];ll chud[1000000];
+   int v;//终点
+   int nxt;//下一条边
+   int w;//权值
+}tu[20000];
+int head[10000];
 void init()
 {memset(head,-1,sizeof(head));}//初始化为-1；
-ll cnt=0;
-void add(ll u,ll v,ll w){//添加边 u 起点 v 终点 w 权值
+int cnt=0;
+void add(int u,int v,int w){//添加边 u 起点 v 终点 w 权值
   tu[++cnt].v=v;
   tu[cnt].w=w;
   tu[cnt].nxt=head[u];
   head[u]=cnt;
-  rd[v]++;
-  chud[u]++;
+  
 }
-ll treesum[1000000]={0};
-int lowbit(int x){return x&(-x);}
-void treeadd(int x,int v,int n){
-  for(int i=x;i<=n;i+=lowbit(i)){
-    treesum[i]+=v;
+int dp[10000][2]={0};
+void dfs(int i){
+  dp[i][1]=x[i];
+  dp[i][0]=0;
+  for(int j=head[i];j!=-1;j=tu[j].nxt){
+    dfs(tu[j].v);
+   // pos[tu[j].v]=0;
+    dp[i][0]+=max(dp[tu[j].v][0],dp[tu[j].v][1]);
+    dp[i][1]+=dp[tu[j].v][0];
   }
-}
-ll treehe(int a,int b){
-  ll ans=0;
-  for(int i=a-1;i;i-=lowbit(i)){
-    ans-=treesum[i];
-  }
-  for(int i=b;i;i-=lowbit(i)){
-    ans+=treesum[i];
-  }
-  return ans;
 }
 void solve() {   
-  int n,m;cin>>n>>m;map<ll,ll>mp,mp1,mp2;
+  int n;
+  while(cin>>n){
+    init();
+    memset(tu,0,sizeof(tu));
+    memset(dp,0,sizeof(dp));
+    memset(x,0,sizeof(x));
+    int f=0;
   for(int i=1;i<=n;i++){
-    pre[i]=i;
+    cin>>x[i];
   }
-  for(int i=1;i<=m;i++){
-    int a,b;cin>>a>>b;
-    mp1[a]++;mp1[b]++;
-    jihejoin(a,b);
+  int a=1,b=1;
+  int flag=0;
+ // map<int,int>mp;
+  int t=n;
+  int pos[n+10]={0};
+  while(1){
+    cin>>a>>b;
+    if(a==0&&b==0)break;
+    pos[a]=1;
+   // add(a,b,1);
+    add(b,a,1);
   }
   for(int i=1;i<=n;i++){
-    mp[jihefind(i)]++;
-    if(mp1[i]!=2){
-      mp2[jihefind(i)]=0;
+    if(pos[i]==0){
+      flag=i;break;
     }
-   // cout<<jihefind(i) endd;
   }
-  for(auto it:mp){
-    if(it.se>=3&&mp2.count(it.fi)==0) sumy++;
-   // cout<<it.fi endd;
-  }//cout endl;
-  cout<<sumy endl;
-  
+  dfs(flag);
+  cout<<max(dp[flag][0],dp[flag][1]) <<"\n";
+}
+return ;
 }
 int main() {
     std::ios::sync_with_stdio(false);
@@ -103,6 +70,7 @@ int main() {
     // scanf("%d", &T);
     // cin >> T;
     while (T--) {
+
         solve();
     }
     return 0;
