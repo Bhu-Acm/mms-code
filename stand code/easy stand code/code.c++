@@ -17,7 +17,6 @@
 #define endd <<" "
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
-//ll x[500010] = { 0 };
 void solve() {   
   
 }

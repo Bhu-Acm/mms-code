@@ -15,32 +15,31 @@
 #define endl <<"\n"
 #define double long double
 #define endd <<" "
+inline ll gcd(ll a, ll b) { return b > 0 ? gcd(b, a % b) : a; }// from kdb
 using namespace std;
-//atuo lfy 琴弦断了，缘也尽了，你也走了
-//ll x[500010] = { 0 };
+//atuo lfy 琴弦断了，缘也尽了，你也走
 void solve() {   
+  int z,h,a,b,a1,b1;
+  cin>>z>>h>>a>>b>>a1>>b1;
+  if(a>a1)swap(a,a1);
+  if(b>b1)swap(b,b1);
+  ll h1=z+h;
   int n;cin>>n;
-  ll x[n+10];
-  ll sum[n+10]={0};
-  for(int i=1;i<=n;i++){
-    cin>>x[i];
-  }sum[1]=x[1];
-  ll s=0;ll maxx=0;
-  for(int i=1;i<n;i++){
-    if(x[i]>x[i+1]){
-      s+=x[i]-x[i+1];
-      maxx=max(x[i]-x[i+1],maxx);
-      x[i+1]=x[i];
+  while(n--){
+    int x1,y1,z1;cin>>x1>>y1>>z1;
+    if(x1>=a&&x1<=a1&&y1>=b&&y1<=b1&&z1>=z&&z1<=h1){
+        cout<<"YES\n";
+    }else{
+        cout<<"NO\n";
     }
   }
-  cout<<s+maxx endl;
 }
 int main() {
     std::ios::sync_with_stdio(false);
-     cin.tie(0);cout.tie(0);
+    cin.tie(0);cout.tie(0);
     int T = 1;
     // scanf("%d", &T);
-     cin >> T;
+    // cin >> T;
     while (T--) {
         solve();
     }
