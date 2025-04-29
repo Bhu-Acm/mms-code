@@ -71,26 +71,47 @@ ll treehe(int a,int b){
   }
   return ans;
 }
+//大致的思路是分为两种情况 当x>=y以及 x<y的情况
+//当x大于等于y 我们让x先到距离能被y整除的最大值
+//然后按题目操作来 反复这个过程直到x小于y
+//这个时候就会进入x加到y 然后变成一然后再加到y的循环
+//按数学式子进行计算即可
+//OS：并不怎么会数学公式【😓】
 void solve() {   
   ll x,y,k;cin>>x>>y>>k;
-  if(x<=y){
-    
-  }
-  while(k!=0){
-    x++;
-    if(x%y==0){
-        while(x%y!=0){
-            x/=y;
-        }
-    }else{
-        ll t=x/y+1;
-        if(k>=t){
-            k-=t;
-        }
-        x+=t;
+  while(x>=y){
+    ll t=(x/y+1)*y;
+    if(k<t-x){
+      cout<<x+k endl;return ;
+    }else if(t-x==k){
+      x=t;
+      while(x%y==0){
+        x/=y;
+      }
+      cout<<x endl;return ;
     }
-
+    else{
+      k-=(t-x);x=t;
+      while(x%y==0){
+        x/=y;
+      }
+    }
   }
+  ll t=y-x;
+  if(k<t){
+    cout<<x+k endl;return ;
+  }else if(k==t){
+    cout<<1 endl;return ;
+  }else{
+    k-=t;x=1;
+  }
+  if(k<y-1){
+    cout<<x+k endl;return ;
+  }
+  if((k)%(y-1)==0){
+    cout<<1 endl;return ;
+  }
+  cout<<1+(k)%(y-1) endl;
 }
 int main() {
     std::ios::sync_with_stdio(false);
