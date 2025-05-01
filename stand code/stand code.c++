@@ -9,9 +9,6 @@
 #include<numeric>
 #define ll long  long
 #define ull unsigned long long
-#define itn int 
-#define mian main
-#define N 1000010
 #define yes true
 #define no false
 #define fi first
@@ -31,7 +28,7 @@ inline ll gcd(ll a, ll b) { return b > 0 ? gcd(b, a % b) : a; }// from kdb
 inline ll lcm(ll a, ll b) { return (a * b) / gcd(a, b); }
 inline int jihefind(int root){if(pre[root]==root){return root;}pre[root]=jihefind(pre[root]);return pre[root];}
 inline int jihejoin(int x,int y){ x=jihefind(x); y=jihefind(y);if(x==y){return 0;}if(Rank[x]>Rank[y]){pre[y]=x;}else{if(Rank[x]==Rank[y]){Rank[y]++;}pre[x]=y;}return 1;}
-inline bool issame(itn x,int y){return jihefind(x)==jihefind(y);}
+inline bool issame(int x,int y){return jihefind(x)==jihefind(y);}
 // priority_queue<int> q;//优先队列 大
 //priority_queue<int,vector<int>,greater<int> > q;//优先队列 小
 int dx[8]={-1,1,0,0,-1,-1,1,1};
@@ -45,8 +42,7 @@ struct Tu{
 ll head[1000000];ll rd[1000000];ll chud[1000000];
 void init()
 {memset(head,-1,sizeof(head));}//初始化为-1；
-ll cnt=0;
-void add(ll u,ll v,ll w){//添加边 u 起点 v 终点 w 权值
+ll cnt=0;void add(ll u,ll v,ll w){//添加边 u 起点 v 终点 w 权值
   tu[++cnt].v=v;
   tu[cnt].w=w;
   tu[cnt].nxt=head[u];
@@ -54,8 +50,22 @@ void add(ll u,ll v,ll w){//添加边 u 起点 v 终点 w 权值
   rd[v]++;
   chud[u]++;
 }
-ll treesum[1000000]={0};
+//快速幂
+//乘法逆元  求a/b的模
+// a*ksm（b，mod-2）%mod；
+ll ksm(ll a,ll b){
+  ll sum=1;
+  while(b>0){
+    if(b&1) sum=sum*a;
+    a=a*a;
+    b>>=1;
+  }
+  return sum;
+}
+//求二进制最低位1及其后面的值
 int lowbit(int x){return x&(-x);}
+ll treesum[1000000]={0};
+//树状数组
 void treeadd(int x,int v,int n){
   for(int i=x;i<=n;i+=lowbit(i)){
     treesum[i]+=v;
