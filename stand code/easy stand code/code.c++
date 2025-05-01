@@ -2,11 +2,6 @@
 #include<bits/stdc++.h>
 #define ll long  long
 #define ull unsigned long long
-#define itn int 
-#define mian main
-#define N 1000010
-#define yes true
-#define no false
 #define fi first
 #define all(x) x.begin(),x.end()
 #define se second
