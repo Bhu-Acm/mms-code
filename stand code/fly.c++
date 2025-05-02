@@ -19,7 +19,11 @@ inline ll gcd(ll a, ll b) { return b > 0 ? gcd(b, a % b) : a; }// from kdb
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走
 void solve() {   
-  cout<<(ll)pow(2,22);
+  string s[2];
+  s[0]="99";s[1]="100";
+  sort(s,s+1);
+  cout<<s[0] endd<<s[1] endl;
+
 }
 int main() {
     std::ios::sync_with_stdio(false);
