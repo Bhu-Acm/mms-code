@@ -12,20 +12,33 @@
 #define endd <<" "
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
-inline ll gcd(ll a, ll b) { return b > 0 ? gcd(b, a % b) : a; }// from kdb
-void solve() {   
-  int n,k;cin>>n>>k;
-    ll a=1,b=1;
-    for(int i=1;i<=9;i++)a*=i;
-    for(int i=n*k;i>n*k-9;i--){
-        b*=i;
+ ll x[200];  int n,m;
+int pd(int t){
+    map<ll,ll>mp;
+    for(int i=1;i<=t;i++){
+        mp[x[i]]++;
     }
-    ll t=gcd(a,b);
-    cout<<a/t endl<<b/t endl;
+    for(int i=1;i<=m;i++){
+        if(mp[i]==0){
+            return 0;
+        }
+    }
+    return 1;
+}
+void solve() {   
+cin>>n>>m;
+  for(int i=1;i<=n;i++){
+    cin>>x[i];
+  }
+  int f=n;ll sum=0;
+  while(pd(f)!=0){
+    f--;sum++;
+  }
+  cout<<sum endl;
 }
 int main() {
     std::ios::sync_with_stdio(false);
-     cin.tie(0);cout.tie(0);
+    cin.tie(0);cout.tie(0);
     int T = 1;
     // scanf("%d", &T);
     // cin >> T;

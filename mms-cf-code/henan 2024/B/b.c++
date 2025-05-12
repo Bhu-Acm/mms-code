@@ -12,16 +12,37 @@
 #define endd <<" "
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
-inline ll gcd(ll a, ll b) { return b > 0 ? gcd(b, a % b) : a; }// from kdb
+// struct S{
+//     int id;
+//     ll v;
+// }x[200010];
+// bool cmp(S a,S b){
+//     if(a.v==b.v){
+//         return a.id<b.id;
+//     }
+//     return a.v<b.v;
+// }
 void solve() {   
-  int n,k;cin>>n>>k;
-    ll a=1,b=1;
-    for(int i=1;i<=9;i++)a*=i;
-    for(int i=n*k;i>n*k-9;i--){
-        b*=i;
+  int n;cin>>n;
+  ll x[n+10];ll sum[n+10];
+  for(int i=1;i<=n;i++){
+    cin>>x[i];
+   // sum[i]=
+  }
+  ll minn=INT_MAX;
+  for(int i=n;i>=1;i--){
+    sum[i]=min(minn,x[i]);
+    minn=sum[i];
+  }
+  int t=0;int cnt=0;
+  for(int i=1;i<=n;i++){
+    t++;
+    if(x[i]==sum[i]){
+        cnt+=t/x[i];
+        t=t%x[i];
     }
-    ll t=gcd(a,b);
-    cout<<a/t endl<<b/t endl;
+  }
+  cout<<cnt endl;
 }
 int main() {
     std::ios::sync_with_stdio(false);

@@ -12,23 +12,34 @@
 #define endd <<" "
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
-inline ll gcd(ll a, ll b) { return b > 0 ? gcd(b, a % b) : a; }// from kdb
+//构造好题  https://www.luogu.com.cn/problem/solution/CF1923C
 void solve() {   
-  int n,k;cin>>n>>k;
-    ll a=1,b=1;
-    for(int i=1;i<=9;i++)a*=i;
-    for(int i=n*k;i>n*k-9;i--){
-        b*=i;
+  int n,q;cin>>n>>q;
+  ll x[n+10];ll sum[n+10]={0};
+  ll sum1[n+10]={0};
+  for(int i=1;i<=n;i++){
+    cin>>x[i];
+    sum[i]=sum[i-1]+x[i]-1;
+    sum1[i]=sum1[i-1]+(x[i]==1);
+  }
+  while(q--){
+    int a,b;cin>>a>>b;
+    if(a==b){
+        cout<<"NO\n";continue;
     }
-    ll t=gcd(a,b);
-    cout<<a/t endl<<b/t endl;
+    if(sum[b]-sum[a-1]<sum1[b]-sum1[a-1]){
+        cout<<"NO\n";
+    }else{
+        cout<<"YES\n";
+    }
+  }
 }
 int main() {
     std::ios::sync_with_stdio(false);
      cin.tie(0);cout.tie(0);
     int T = 1;
     // scanf("%d", &T);
-    // cin >> T;
+     cin >> T;
     while (T--) {
         solve();
     }
