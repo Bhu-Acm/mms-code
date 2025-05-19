@@ -13,30 +13,31 @@
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
 void solve() {   
-  int n;cin>>n;
-  ll x[n+10];
-  map<ll,ll>mp;
-  for(int i=1;i<=n;i++){
-    cin>>x[i];
-    mp[x[i]]++;
-  }ll ans=0;
-  for(auto it:mp){
-    int i=it.fi;
-    if(i>n)break;
-    if(i>n||it.se==0)continue;
-    ans+=min(mp[i],mp[i+1]);
-    if(i>2&&i%2==0&&i!=4){
-        ll t=i/2;
-        if(mp[t]!=0&&mp[i]!=0){
-            ans+=max(mp[t],mp[i]);
+    int n;cin>>n;
+    int x[n+10][n+10]={0};
+    memset(x,0,sizeof(x));
+    int a=1,b=2;
+    if(1){
+        for(int i=1;i<=n;i++){
+            if(a>=n)break;
+            for(int j=1;j<n;j+=2){
+                x[i][j]=a;x[i][j+1]=b;
+                b++;
+                if(b>n){
+                    a++;b=a+1;
+                }
+            }
         }
     }
-    if(i>=2&&i%2==0){
-        if(mp[i]!=0&&mp[i+2]!=0)
-        ans+=max(mp[i],mp[i+2]);
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n;j++){
+            if(x[i][j]==0){
+                cout<<1 endd;continue;
+            }
+            cout<<x[i][j] endd;
+
+        }cout endl;
     }
-  }
-  cout<<ans endl;
 }
 int main() {
     std::ios::sync_with_stdio(false);
