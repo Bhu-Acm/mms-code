@@ -14,20 +14,22 @@ using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
 void solve() {   
   ll n,k;cin>>n>>k;
-  for(int i=1;i<=n;i++){
-    if(i<=k){
-        cout<<1;
-    }else{
-        cout<<4;
-    }
+  if(n==0){
+    cout<<0 endl;return ;
   }
+  while(k--){
+    ll t=n/2;
+    n-=t;
+    if(n==1)break;
+  }
+  cout<<n endl;
 }
 int main() {
     std::ios::sync_with_stdio(false);
      cin.tie(0);cout.tie(0);
     int T = 1;
     // scanf("%d", &T);
-    // cin >> T;
+     cin >> T;
     while (T--) {
         solve();
     }

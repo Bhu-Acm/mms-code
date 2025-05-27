@@ -13,14 +13,19 @@
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
 void solve() {   
-  ll n,k;cin>>n>>k;
-  for(int i=1;i<=n;i++){
-    if(i<=k){
-        cout<<1;
-    }else{
-        cout<<4;
+  int n;cin>>n;
+  string s;cin>>s;
+  ll ans=0;
+  for(int i=0;i<s.size();i++){
+    if(s[i]=='e'){
+        for(int j=i+1;j<s.size();j++){
+            if(s[j]=='f'){
+                ans+=(j-i);
+            }
+        }
     }
   }
+  cout<<ans endl;
 }
 int main() {
     std::ios::sync_with_stdio(false);
