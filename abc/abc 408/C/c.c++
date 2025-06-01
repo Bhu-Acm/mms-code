@@ -13,14 +13,26 @@
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
 void solve() {   
-  
+  int n,m;cin>>n>>m;
+  ll sum[n+10]={0};
+  for(int i=1;i<=m;i++){
+    int a,b;cin>>a>>b;
+    sum[a]++;sum[b+1]--;
+  }
+  ll minn=INT_MAX;
+  for(int i=1;i<=n;i++){
+    sum[i]+=sum[i-1];
+    minn=min(minn,sum[i]);
+  }
+  cout<<minn endl;
+
 }
 int main() {
     std::ios::sync_with_stdio(false);
      cin.tie(0);cout.tie(0);
     int T = 1;
     // scanf("%d", &T);
-     cin >> T;
+    // cin >> T;
     while (T--) {
         solve();
     }

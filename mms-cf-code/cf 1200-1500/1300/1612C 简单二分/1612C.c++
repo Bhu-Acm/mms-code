@@ -13,7 +13,25 @@
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
 void solve() {   
-  
+  ll k,x;cin>>k>>x;
+  ll a=1;ll b=2*k;int flag=1;
+  while(a<b){
+    ll w=(a+b)>>1;
+    ll sum=0;
+    if(w>=k){
+        sum+=(k+k*(k-1)/2);
+        ll k1=w-k;
+        sum+=((k-1)*k1-k1*(k1-1)/2);
+    }else{
+        sum+=(w+w*(w-1)/2);
+    }
+    if(sum>=x){
+        b=w;
+    }else{
+        a=w+1;
+    }
+  }
+  cout<<min(a,2*k-1) endl;
 }
 int main() {
     std::ios::sync_with_stdio(false);
