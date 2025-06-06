@@ -12,12 +12,30 @@
 #define endd <<" "
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
+int n;
+struct S{
+    int id;
+    ll v;
+}x[500010];
+bool cmp(S a,S b){
+    if(a.v==b.v){
+        return a.id<b.id;
+    }
+    return a.v<b.v;
+}
 void solve() {   
-  
+    int n;cin>>n;
+    vector<ll>v;
+    for(int i=1;i<=n;i++){
+        cin>>x[i].v;
+        x[i].id=i;      
+        v.push_back(x[i].v);
+    }
+    ll sum[n+10]={0};
 }
 int main() {
     std::ios::sync_with_stdio(false);
-    // cin.tie(0);cout.tie(0);
+     cin.tie(0);cout.tie(0);
     int T = 1;
     // scanf("%d", &T);
     // cin >> T;
