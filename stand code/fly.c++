@@ -12,50 +12,49 @@
 #define endd <<" "
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
+//数据结构神力！！！！
+//注意set end（） 返回的不是最后一个 
+//最后一个是 --end（）;
 void solve() {   
-  int n;cin>>n;
-  string s;cin>>s;
-  vector<ll>v;ll sum=0;
-  ll a=0,b=0;
-  for(int i=0;i<s.size();i++){
-    if(s[i]=='(')sum++,a++;
-    else sum--,b++;
-    if(a==b&&s[i]==')'){
-        a=0;b=0;
+  int q;cin>>q;
+  multiset<ll>l,r;
+  while(q--){
+    char t;int a,b;cin>>t>>a>>b;
+    if(t=='+'){
+      l.insert(a);
+      r.insert(b);
+    }else{
+      l.erase(l.find(a));
+      r.erase(r.find(b));
     }
-    if(sum==0){
-        v.push_back(i);
+    //cout<<*l.end()-1 endd<<*r.begin() endl;
+    if(l.size()<=1){
+      cout<<"NO\n";continue;
     }
-  }
-  if(a==0&&b==0){
-    cout<<1 endl;
-    for(int i=1;i<=n;i++){
-        cout<<1 endd;
+    if(*--l.end() > *r.begin()){
+      cout<<"YES\n";
+    }else{
+      cout<<"NO\n";
     }
-    cout endl;
-    return ;
-  }
-  if(sum!=0){
-    cout<<-1 endl;
-  }else{
-    ll t=1;
-    cout<<v.size() endl;int j=0;
-    for(int i=0;i<s.size();i++){
-        cout<<t endd;
-        if(i==v[j]){
-            j++;
-            t++;
-        }
-        
-    }cout endl;
+    //ai给的 
+//     if(l.size() <= 1){
+//     cout << "NO\n"; 
+//     continue;
+// }
+// if(*prev(l.end()) > *r.begin()){
+//     cout << "YES\n";
+// }else{
+//     cout << "NO\n";
+// }
+
   }
 }
 int main() {
     std::ios::sync_with_stdio(false);
-     cin.tie(0);cout.tie(0);
+    // cin.tie(0);cout.tie(0);
     int T = 1;
     // scanf("%d", &T);
-     cin >> T;
+    // cin >> T;
     while (T--) {
         solve();
     }

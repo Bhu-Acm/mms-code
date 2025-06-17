@@ -83,15 +83,15 @@ ll treehe(int a,int b){
 }
 //欧拉筛
 vector<int> pri;
-bool not_prime[1000010];
+int not_prime[1000010];
 void oula(int n) {
   for (int i = 2; i <= n; ++i) {
-    if (!not_prime[i]) {
+    if (not_prime[i]==0) {
       pri.push_back(i);
     }
     for (int pri_j : pri) {
       if (i * pri_j > n) break;
-      not_prime[i * pri_j] = true;
+      not_prime[i * pri_j] = 1;
       if (i % pri_j == 0) {
         // i % pri_j == 0
         // 换言之，i 之前被 pri_j 筛过了

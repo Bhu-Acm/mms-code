@@ -13,14 +13,33 @@
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
 void solve() {   
-    
+  int n;cin>>n;
+  if(n%2!=0){
+    for(int i=1;i<n;i+=2){
+      cout<<i endd;
+  }
+  cout<<n endd;
+  for(int i=n-1;i>=1;i-=2){
+    cout<<i endd;
+  }
+  cout endl;
+  }else{
+    for(int i=1;i<=n;i+=2){
+      cout<<i endd;
+    }
+    for(int i=n;i>=1;i-=2){
+      cout<<i endd;
+    }
+    cout endl;
+  }
+  
 }
 int main() {
     std::ios::sync_with_stdio(false);
-    // cin.tie(0);cout.tie(0); 
+     cin.tie(0);cout.tie(0);
     int T = 1;
     // scanf("%d", &T);
-    // cin >> T;
+     cin >> T;
     while (T--) {
         solve();
     }

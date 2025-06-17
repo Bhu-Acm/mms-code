@@ -13,11 +13,18 @@
 using namespace std;
 //atuo lfy 琴弦断了，缘也尽了，你也走了
 void solve() {   
-    
+  int n;cin>>n;
+  string a,b;cin>>a>>b;
+  for(int i=0;i<n;i++){
+    if(a[i]=='o'&&b[i]=='o'){
+        cout<<"Yes\n";return ;
+    }
+  }
+  cout<<"No\n";
 }
 int main() {
     std::ios::sync_with_stdio(false);
-    // cin.tie(0);cout.tie(0); 
+     cin.tie(0);cout.tie(0);
     int T = 1;
     // scanf("%d", &T);
     // cin >> T;
